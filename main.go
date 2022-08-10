@@ -7,6 +7,7 @@ import (
     "path"
     "strings"
 	"strconv"
+    "time"
 )
 
 type Response struct {
@@ -19,6 +20,7 @@ type Task struct {
     TaskName    string
     Assignee  string
     Date string
+    Status string
 }
 
 var tasks []Task;
@@ -45,6 +47,34 @@ func main() {
 }
 
 func handlerIndex(w http.ResponseWriter, r *http.Request) {
+    currentTime := time.Now()
+    fmt.Println("currentTime", currentTime.Format("2006-01-02"))
+    
+    for i := range tasks {
+        // tasks[i].Status = Datet, err := time.Parse(layout, str)
+        s := "N/A"
+        if tasks[i].Date != "" {
+
+            if currentTime.Format("2006-01-02") == tasks[i].Date {
+                s = "Last Day"
+            } else {
+                t, err := time.Parse("2006-01-02", tasks[i].Date)
+                if err != nil {
+                    fmt.Println(err)
+                }
+                g1 := currentTime.Before(t)
+                fmt.Println("today before tomorrow:", g1)
+
+                s = "Expired"
+                if g1 == true {
+                    s = "Active"
+                }
+            }
+        }
+
+        tasks[i].Status = s
+    }
+
 	var filepath = path.Join("views", "index.html")
 	var tmpl = template.Must(template.ParseFiles(filepath))
 	if err := tmpl.Execute(w, map[string]interface{}{"tasks":tasks}); err != nil {

@@ -26,7 +26,8 @@
                             <th>Task Name</th>
                             <th>Assignee</th>
                             <th>Deadline</th>
-                            <th>Action</th>
+                            <th>Status</th>
+                            <th width="180px">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,12 +35,12 @@
                         <tr><td>{{$elem.TaskName}}</td>
                             <td>{{$elem.Assignee}}</td>
                             <td>{{$elem.Date}}</td>
+                            <th>
+                                {{$elem.Status}}
+                            </th>
                             <td>
                                 <a class="btn btn-secondary" href="/update/{{$elem.Id}}" role="button">Update</a>
                                 <a class="btn btn-danger" href="/delete/{{$elem.Id}}" role="button">Delete</a>
-                                <!-- <button class="btn btn-default" data-href="{{$elem.Id}}" data-toggle="modal" data-target="#confirm-delete">
-                                    Delete
-                                </button> -->
                             </td>
                         </tr>
                         {{end}}
@@ -71,9 +72,9 @@
             </div>
         </div>
         <div class="copy-right">
-            &copy; 2022 - DTS GOL3-2 Asep Nur Rohman
-            <br>
             https://github.com/nurrohman224/dts-mini-project-golang
+            <br>
+            &copy; 2022 - DTS GOL3-2 Asep Nur Rohman
         </div>
         <script type="text/javascript">
             $(document).ready(function () {
