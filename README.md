@@ -10,3 +10,7 @@ To get started:
 5. akses localhost:9090
 6. penyimpanan data baru disimpan divariable
 7. status otomatis tergenerate berdasarkan current date 
+8. jika date sudah lewat dari current date status: "Expired"
+9. jika date sama dengan cureent date status: "Last Day"
+10. Jika date belum lewat dari current date status: "Active"
+11. Jika date konong status: "N/A"
